@@ -31,10 +31,11 @@ tokens = tokenizer.apply_chat_template(
     chat,
     return_tensors="pt"
 )
+tokens = tokens.to(get_best_device())
 
 # Generate output
 generation_output = model.generate(
-    tokens, 
+    tokens,
     streamer=streamer,
     max_new_tokens=64,
     eos_token_id=terminators
